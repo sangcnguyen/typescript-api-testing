@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -r ts-node/register src/test/*.test.ts"
+    "test": "mocha -t 30000 -r ts-node/register src/test/*.test.ts --reporter mochawesome"
   },
   "keywords": [],
   "author": "Sang Nguyen",
@@ -13,8 +13,9 @@
     "axios": "^0.19.0",
     "chai": "^4.2.0",
     "mocha": "^6.2.2",
-    "typescript": "^3.7.3",
-    "mocha-typescript": "^1.1.17"
+    "mocha-typescript": "^1.1.17",
+    "mochawesome": "^4.1.0",
+    "typescript": "^3.7.3"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",

@@ -1,11 +1,11 @@
-import {assert} from 'chai';
 import axios from 'axios';
 import {suite, test} from 'mocha-typescript';
+import {BaseAPI} from '../base/BaseAPI';
 
 @suite
-class HealthCheck {
+class HealthCheck extends BaseAPI {
   @test()
   async verifyPingAPI(): Promise<void> {
-    const response = await axios.get('https://restful-booker.herokuapp.com/ping');
+    const response = await axios.get(`${this.url}/ping`);
   }
 }
