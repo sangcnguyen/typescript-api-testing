@@ -6,6 +6,6 @@ import {BaseAPI} from '../base/BaseAPI';
 class HealthCheck extends BaseAPI {
   @test()
   async verifyPingAPI(): Promise<void> {
-    const response = await axios.get(`${this.url}/ping`);
+    await axios.get(`${this.url}/ping`);
   }
 }

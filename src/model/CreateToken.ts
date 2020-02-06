@@ -1,6 +1,11 @@
 import axios from 'axios';
 import {BaseAPI} from '../base/BaseAPI';
 
+export interface Account {
+  username: string;
+  password: string;
+}
+
 export class CreateToken extends BaseAPI {
   private static instance: CreateToken;
 
@@ -8,17 +13,14 @@ export class CreateToken extends BaseAPI {
     super('/auth');
   }
 
-  public static getInstance(): CreateToken {
+  static getInstance(): CreateToken {
     if (!CreateToken.instance) {
       CreateToken.instance = new CreateToken();
     }
     return CreateToken.instance;
   }
 
-  public async sendRequest(): Promise<any> {
-    return await axios.post(`${this.url}`, {
-      username: 'admin',
-      password: 'password123'
-    });
+  async sendRequest(acc: Account): Promise<any> {
+    return await axios.post(`${this.url}`, acc);
   }
 }

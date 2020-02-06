@@ -8,40 +8,36 @@ import {CreateToken} from '../model/CreateToken';
 class BookingTest extends AbstractListener {
   private bookingId: String;
 
+  bookingBody: any = {
+    firstname: 'Sang',
+    lastname: 'Nguyen',
+    totalprice: 123,
+    depositpaid: true,
+    bookingdates: {
+      checkin: '2018-01-01',
+      checkout: '2019-01-01'
+    },
+    additionalneeds: 'Breakfast'
+  };
+
+  account: any = {
+    username: 'admin',
+    password: 'password123'
+  };
+
   @test
   async verifyCreateBookingSuccessfully(): Promise<void> {
-    const json = await Booking.getInstance().createBooking();
-    assert.deepEqual(json.booking, {
-      firstname: 'Sang',
-      lastname: 'Nguyen',
-      totalprice: 123,
-      depositpaid: true,
-      bookingdates: {
-        checkin: '2018-01-01',
-        checkout: '2019-01-01'
-      },
-      additionalneeds: 'Breakfast'
-    });
+    const json = await Booking.getInstance().createBooking(this.bookingBody);
+    assert.deepEqual(json.booking, this.bookingBody);
   }
 
   @test
   async verifyUpdateBookingSuccessfully(): Promise<void> {
     const getBookingId = await Booking.getInstance().getBookingIds();
     this.bookingId = getBookingId[Math.floor(Math.random() * getBookingId.length)].bookingid;
-    const auth = await CreateToken.getInstance().sendRequest();
-
-    const updateBooking = await Booking.getInstance().updateBooking(this.bookingId, auth.token);
-    assert.deepEqual(updateBooking, {
-      firstname: 'firstname',
-      lastname: 'lastname',
-      totalprice: 123,
-      depositpaid: true,
-      bookingdates: {
-        checkin: '2018-01-01',
-        checkout: '2019-01-01'
-      },
-      additionalneeds: 'Breakfast'
-    });
+    const auth = await CreateToken.getInstance().sendRequest(this.account);
+    const updateBooking = await Booking.getInstance().updateBooking(this.bookingId, this.bookingBody, auth.token);
+    assert.deepEqual(updateBooking, this.bookingBody);
   }
 
   @test
