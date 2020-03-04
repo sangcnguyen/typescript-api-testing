@@ -4,18 +4,17 @@ This is my sample code structure for running automated API testing written for T
 Give a ⭐️ if this project helped you!
 
 
-## Install
-
-```sh
-npm install
+## Prerequisites
+```
+npm
 ```
 
-## Run sample testcases
 
-```sh
-npm run test
+## How to use
+
 ```
-
-## Author
-
-* Github: [@sangcnguyen](https://github.com/sangcnguyen)
+1. clone the project and go to it's folder on terminal
+2. type `npm install`
+3. type `npm run test`
+4. enjoy
+```
