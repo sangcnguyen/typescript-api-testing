@@ -6,7 +6,7 @@ Give a ⭐️ if this project helped you!
 
 ## Prerequisites
 ```
-npm
+NodeJs 
 ```
 
 
@@ -18,3 +18,18 @@ npm
 3. type `npm run test`
 4. enjoy
 ```
+
+# How it is structured
+
+```
+.
+src
+├── base/
+├── model/
+├── test/
+```
+
+- `base`: Think of this as a "framework". Ideally should be a separate module distributed on `npm`. All general settings and initial configuration that are re-used by tests
+- `model`: These are your `API Object` models. Likewise POM, each endpoint of your application should have a API Object that maps all the actions
+- `test`: All your TDD-style/classes test goes here 
+
